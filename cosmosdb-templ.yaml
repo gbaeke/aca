@@ -1,0 +1,16 @@
+componentType: state.azure.cosmosdb
+version: v1
+metadata:
+- name: url
+  value: "$ENDPOINT"
+- name: masterkey
+  secretRef: cosmoskey
+- name: database
+  value: aca-db
+- name: collection
+  value: statestore
+secrets:
+- name: cosmoskey
+  value: "$KEY"
+scopes:
+- $DAPRID
