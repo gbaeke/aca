@@ -109,9 +109,9 @@ Demonstrate:
 Retrieve the FQDN from an Azure Container Apps with the Azure CLI:
     
 ```bash
-RG=rg-aca
-APPID=$(az containerapp show -g $RG -n frontend | jq .[].id -r)
-EXPORT FQDN=$(az containerapp show --ids $APPID | jq .properties.configuration.ingress.fqdn -r)
+RG=aca-demo
+APPID=$(az containerapp show -g $RG -n frontend | jq .id -r)
+export FQDN=$(az containerapp show --ids $APPID | jq .properties.configuration.ingress.fqdn -r)
 ```
 
 # Tips

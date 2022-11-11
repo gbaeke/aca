@@ -4,7 +4,7 @@ FROM mcr.microsoft.com/devcontainers/base:bullseye
 # [Option] Install zsh
 ARG INSTALL_ZSH="true"
 # [Option] Upgrade OS packages to their latest versions
-ARG UPGRADE_PACKAGES="false"
+ARG UPGRADE_PACKAGES="true"
 
 # Install needed packages and setup non-root user. Use a separate RUN statement to add your own dependencies.
 ARG USERNAME=vscode
@@ -16,6 +16,7 @@ RUN bash /tmp/library-scripts/common-debian.sh "${INSTALL_ZSH}" "${USERNAME}" "$
     && bash /tmp/library-scripts/azcli-debian.sh \
     # Clean up
     && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/library-scripts
+
 
 # [Optional] Uncomment this section to install additional OS packages.
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
