@@ -1,0 +1,20 @@
+uniqueId=$RANDOM
+LOCATION=westeurope
+RG=aca-demo
+az group create --name $RG --location $LOCATION
+az cosmosdb create \
+  --name aca-$uniqueId \
+  --resource-group $RG \
+  --locations regionName=$LOCATION \
+  --default-consistency-level Strong
+az cosmosdb sql database create \
+  -a aca-$uniqueId \
+  -g $RG \
+  -n aca-db
+az cosmosdb sql container create \
+  -a aca-$uniqueId \
+  -g $RG \
+  -d aca-db \
+  -n statestore \
+  -p '/partitionKey' \
+  --throughput 400
