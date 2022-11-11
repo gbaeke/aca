@@ -56,7 +56,7 @@ Demonstrate:
 **Note:** we can modify the source code and run `az containerapp up` again to update the container app
 
 
-# Demo 3: Deploy envent driven container app
+# Demo 3: Deploy event driven container app
 
 👉 Deploy service bus with commands from `./demos/demo3-scale/commands.md`
 ([link](./demos/demo3-scale/commands.md))
