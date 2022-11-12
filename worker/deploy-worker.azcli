@@ -1,0 +1,10 @@
+RG=aca-demo
+ENVNAME=env-aca
+
+# use GitHub repo which creates a GitHub Actions workflow
+# az containerapp up --repo https://github.com/gbaeke/aca  --context-path ./worker \
+#    -n worker -g $RG --environment $ENVNAME -l westeurope
+
+cd /workspaces/aca/worker
+
+az containerapp up -n worker -g $RG --environment $ENVNAME -l westeurope --source .

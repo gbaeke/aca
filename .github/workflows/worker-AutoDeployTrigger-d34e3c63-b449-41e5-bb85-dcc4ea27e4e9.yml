@@ -2,14 +2,6 @@ name: Trigger auto deployment for worker
 
 # When this action will be executed
 on:
-  # Automatically trigger it when detected changes in repo
-  push:
-    branches: 
-      [ master ]
-    paths:
-    - 'worker/**'
-    - '.github/workflows/worker-AutoDeployTrigger-d34e3c63-b449-41e5-bb85-dcc4ea27e4e9.yml'
-
   # Allow mannually trigger 
   workflow_dispatch:      
 
