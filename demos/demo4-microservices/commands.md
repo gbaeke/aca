@@ -29,26 +29,6 @@ az cosmosdb sql container create \
 ```
 
 
-# Create front-end app
-    
-```bash
-APPNAME=frontend
-DAPRID=frontend # could be different
-IMAGE="ghcr.io/gbaeke/super:1.0.7" # image to deploy
-PORT=8080
-RG=aca-demo
-ENVNAME=env-aca
-
-az containerapp create --name $APPNAME --resource-group $RG \
---environment $ENVNAME --image $IMAGE \
---min-replicas 0 --max-replicas 5 --enable-dapr \
---dapr-app-id $DAPRID --target-port $PORT --ingress external
-
-export FQDN=$(az containerapp show -n $APPNAME -g $RG | jq .properties.configuration.ingress.fqdn -r)
-
-curl https://$FQDN
-```
-
 # Deploy back-end app
 
 ```bash

@@ -3,6 +3,11 @@ import os, requests, json, uuid, time
 # retrieve FQDN environment variable
 fqdn = os.environ.get('FQDN')
 
+if not fqdn:
+    print("Please set FQDN to URL of container app\n")
+    exit(1)
+
+
 
 while True:
     # create a guid for the key name

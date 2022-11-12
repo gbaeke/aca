@@ -43,18 +43,23 @@ az containerapp env create \
   --dapr-instrumentation-key $AIKEY
 ```
 
-# Create super API
+# Create API
     
 ```bash
-APPNAME=super-api
-IMAGE="ghcr.io/gbaeke/super:1.0.5" # image to deploy
+APPNAME=frontend
+DAPRID=frontend 
+IMAGE="ghcr.io/gbaeke/super:1.0.5"
 PORT=8080
 RG=aca-demo
 ENVNAME=env-aca
 
 az containerapp create --name $APPNAME --resource-group $RG \
 --environment $ENVNAME --image $IMAGE \
---min-replicas 0 --max-replicas 5 \
---target-port $PORT --ingress external \
---env-vars WELCOME="Hello from ACA (v1.0.5)"
+--min-replicas 0 --max-replicas 5 --enable-dapr \
+--dapr-app-id $DAPRID --target-port $PORT --ingress external \
+--env-vars WELCOME="Hello from frontend (v1.0.5)"
+
+export FQDN=$(az containerapp show -n $APPNAME -g $RG | jq .properties.configuration.ingress.fqdn -r)
+
+curl https://$FQDN
 ```
