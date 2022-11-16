@@ -1,0 +1,12 @@
+RG=aca-demo
+ENVNAME=env-aca
+
+# use GitHub repo which creates a GitHub Actions workflow
+# az containerapp up --repo https://github.com/gbaeke/aca  --context-path ./worker \
+#    -n worker -g $RG --environment $ENVNAME -l westeurope
+
+az containerapp up -n webui -g $RG --environment $ENVNAME -l westeurope --source . --ingress external --target-port 8080
+
+FQDN=$(az containerapp show -n backend -g $RG | jq .properties.configuration.ingress.fqdn -r)
+
+az containerapp update -n webui -g $RG --set-env-vars BACKEND=https://$FQDN

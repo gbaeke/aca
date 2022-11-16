@@ -29,6 +29,8 @@
 	"postCreateCommand": "az extension add --name containerapp --upgrade",
 	"remoteUser": "vscode",
 	"features": {
-		"ghcr.io/devcontainers/features/python:1": {}
+		"ghcr.io/devcontainers/features/python:1": {},
+		"ghcr.io/devcontainers/features/docker-in-docker:1": {},
+		"ghcr.io/meaningful-ooo/devcontainer-features/homebrew:2": {}
 	}
 }
