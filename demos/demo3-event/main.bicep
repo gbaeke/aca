@@ -68,8 +68,8 @@ resource app 'Microsoft.App/containerApps@2022-03-01' = {
         }
       ]
       scale: {
-        minReplicas: 1
-        maxReplicas: 10
+        minReplicas: 0
+        maxReplicas: 4
         rules: [
           {
             name: 'servicebus'
@@ -78,9 +78,7 @@ resource app 'Microsoft.App/containerApps@2022-03-01' = {
               metadata: {
                 topicName: 'mytopic'
                 messageCount: '2'
-                subscriptionName: 'pubsub'
-
-              
+                subscriptionName: 'pubsub'              
               }
               auth: [
                 {

@@ -48,6 +48,9 @@ def run():
         else:
             config_value=app_config['appkey']
             logging.warning(f"doing useful work with {config_value}")
+            # if key exists in app_config, do something with it
+            if 'mysecret' in app_config:
+                logging.warning(f"and hush hush, there's a secret: {app_config['mysecret']}")
         time.sleep(5)
 
 
@@ -67,7 +70,7 @@ def retrieve_secret(uri):
         # retrieve key vault uri and secret name from uri
         vault_uri = "https://" + uri.split('/')[2]
         secret_name = uri.split('/')[-1]
-        print(f"Retrieving secret {secret_name} from {vault_uri}...")
+        logging.warning(f"Retrieving secret {secret_name} from {vault_uri}...")
 
         # retrieve the secret from Key Vault; CREDENTIAL was set globally
         secret_client = SecretClient(vault_url=vault_uri, credential=CREDENTIAL)

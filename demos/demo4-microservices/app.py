@@ -24,4 +24,12 @@ while True:
     }
 
     # post payload to FQDN
-    r = requests.post("https://" + fqdn + "/call", json=payload)
+    try:
+        r = requests.post("https://" + fqdn + "/call", json=payload)
+        if r.status_code == 200:
+            print("Successfully posted payload")
+        else:
+            print("Error posting payload:" + str(r.status_code) + " " + r.text)
+    except Exception as e:
+        print("Error: " + str(e))
+        exit(1)

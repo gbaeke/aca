@@ -10,7 +10,8 @@
 			"extensions": [
 				"ms-vscode.azurecli",
 				"ms-vscode.azure-account",
-				"GitHub.copilot"
+				"GitHub.copilot",
+				"ms-azuretools.vscode-bicep"
 			]
 		}
 	},

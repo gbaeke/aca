@@ -1,14 +1,16 @@
 APPNAME=frontend
 DAPRID=frontend 
-IMAGE="ghcr.io/gbaeke/super:1.0.7"
+IMAGE="ghcr.io/gbaeke/super:1.0.5"
 PORT=8080
 RG=aca-demo
 ENVNAME=env-aca
 
 az containerapp create --name $APPNAME --resource-group $RG \
 --environment $ENVNAME --image $IMAGE \
---min-replicas 0 --max-replicas 5 --enable-dapr \
---dapr-app-id $DAPRID --target-port $PORT --ingress external
+--min-replicas 0 --max-replicas 2 --enable-dapr \
+--dapr-app-id $DAPRID --target-port $PORT --ingress external \
+--env-vars WELCOME="Hello from frontend (1.0.5)" \
+--dapr-enable-api-logging
 
 export FQDN=$(az containerapp show -n $APPNAME -g $RG | jq .properties.configuration.ingress.fqdn -r)
 

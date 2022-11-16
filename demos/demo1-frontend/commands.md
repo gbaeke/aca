@@ -55,7 +55,7 @@ ENVNAME=env-aca
 
 az containerapp create --name $APPNAME --resource-group $RG \
 --environment $ENVNAME --image $IMAGE \
---min-replicas 0 --max-replicas 5 --enable-dapr \
+--min-replicas 0 --max-replicas 2 --enable-dapr \
 --dapr-app-id $DAPRID --target-port $PORT --ingress external \
 --env-vars WELCOME="Hello from frontend (v1.0.5)"
 

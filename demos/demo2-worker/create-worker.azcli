@@ -1,0 +1,8 @@
+APPNAME=worker
+IMAGE="docker.io/gbaeke/acaworker:v6" # image to deploy
+RG=aca-demo
+ENVNAME=env-aca
+
+az containerapp create --name $APPNAME --resource-group $RG --environment $ENVNAME --image $IMAGE \
+    --min-replicas 1 --max-replicas 2 \
+    --scale-rule-name cpu --scale-rule-type cpu --scale-rule-metadata type=Utilization value=20
