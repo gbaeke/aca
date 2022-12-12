@@ -1,6 +1,5 @@
 RG=aca-demo
 LOCATION=westeurope
 
-cd /workspaces/aca/demo3-event
 
 az deployment group create --resource-group $RG --template-file ./main.bicep --parameters parLocation=$LOCATION

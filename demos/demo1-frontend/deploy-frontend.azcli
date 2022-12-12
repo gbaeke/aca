@@ -14,4 +14,6 @@ az containerapp create --name $APPNAME --resource-group $RG \
 
 export FQDN=$(az containerapp show -n $APPNAME -g $RG | jq .properties.configuration.ingress.fqdn -r)
 
+sleep 10
+
 curl https://$FQDN

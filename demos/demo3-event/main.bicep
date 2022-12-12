@@ -11,7 +11,8 @@ resource sb 'Microsoft.ServiceBus/namespaces@2021-11-01' existing = {
 }
 
 var serviceBusEndpoint = '${sb.id}/AuthorizationRules/RootManageSharedAccessKey'
-var serviceBusConnectionString = listKeys(serviceBusEndpoint, sb.apiVersion).primaryConnectionString
+var serviceBusConnectionString = listKeys(serviceBusEndpoint, 
+      sb.apiVersion).primaryConnectionString
 
 resource pubsub 'Microsoft.App/managedEnvironments/daprComponents@2022-03-01' = {
   name: '${env.name}/pubsub'
