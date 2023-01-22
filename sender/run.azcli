@@ -1,0 +1,13 @@
+RG=aca-demo
+NS=academogeba
+TOPIC=mytopic
+NUM=10000
+AUTHRULE=RootManageSharedAccessKey
+
+
+CONNSTR=$(az servicebus namespace authorization-rule keys list --resource-group $RG \
+     --namespace-name $NS --name $AUTHRULE --query primaryConnectionString --output tsv)
+
+
+python3 app.py --connection_string "$CONNSTR" \
+    --topic_name $TOPIC --num_messages $NUM
